@@ -1,0 +1,218 @@
+[
+    {
+        "id": "f4b72c6229ec1dab",
+        "type": "tab",
+        "label": "OEE Communication",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8a441a09bf8f014d",
+        "type": "mqtt out",
+        "z": "f4b72c6229ec1dab",
+        "name": "",
+        "topic": "factory/data",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "e20158c692c98e28",
+        "x": 930,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "17d20adbb37d7e84",
+        "type": "inject",
+        "z": "f4b72c6229ec1dab",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "factory/data",
+        "payload": "5",
+        "payloadType": "num",
+        "x": 550,
+        "y": 280,
+        "wires": [
+            [
+                "aa304c0c7cd13601"
+            ]
+        ]
+    },
+    {
+        "id": "2c15dda6509e89e9",
+        "type": "aedes broker",
+        "z": "f4b72c6229ec1dab",
+        "name": "",
+        "mqtt_port": 1883,
+        "mqtt_ws_bind": "port",
+        "mqtt_ws_port": "",
+        "mqtt_ws_path": "",
+        "cert": "",
+        "key": "",
+        "certname": "",
+        "keyname": "",
+        "persistence_bind": "memory",
+        "dburl": "",
+        "usetls": false,
+        "x": 650,
+        "y": 140,
+        "wires": [
+            [
+                "82fa3270979247d9"
+            ],
+            [
+                "2ee71414a30cf33e"
+            ]
+        ]
+    },
+    {
+        "id": "82fa3270979247d9",
+        "type": "debug",
+        "z": "f4b72c6229ec1dab",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "2ee71414a30cf33e",
+        "type": "debug",
+        "z": "f4b72c6229ec1dab",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "aa304c0c7cd13601",
+        "type": "function",
+        "z": "f4b72c6229ec1dab",
+        "name": "function 3",
+        "func": "msg.payload = {\n    productionData: {\n        PlannedProductionTime: 100,\n        OperatingTime: 99,\n        PerformanceDefinition: 1,\n        TotalUnitsProduced: 92,\n        GoodUnitsProduced: 90,\n    }\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 280,
+        "wires": [
+            [
+                "8a441a09bf8f014d"
+            ]
+        ]
+    },
+    {
+        "id": "c1f529d6c1fc662d",
+        "type": "inject",
+        "z": "f4b72c6229ec1dab",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "factory/data",
+        "payload": "5",
+        "payloadType": "num",
+        "x": 550,
+        "y": 340,
+        "wires": [
+            [
+                "ef2608b169ee0193"
+            ]
+        ]
+    },
+    {
+        "id": "ef2608b169ee0193",
+        "type": "function",
+        "z": "f4b72c6229ec1dab",
+        "name": "function 4",
+        "func": "msg.payload = {\n    productionData: {\n        PlannedProductionTime: 100,\n        OperatingTime: 100,\n        PerformanceDefinition: 1,\n        TotalUnitsProduced: 92,\n        GoodUnitsProduced: 90,\n    }\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 340,
+        "wires": [
+            [
+                "8a441a09bf8f014d"
+            ]
+        ]
+    },
+    {
+        "id": "e20158c692c98e28",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
